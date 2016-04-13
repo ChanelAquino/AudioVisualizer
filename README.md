@@ -1,4 +1,4 @@
-# CST205 Multimedia Programming: Audio Visualization (Project 3)
+#Multimedia Programming: Audio Visualization
 
 ##TEAM MEMBERS 
 	1. Chanel Aquino (github.com/ChanelAquino)
@@ -13,10 +13,12 @@ Our group intends to utilize Python libraries to build a program that takes in a
   1.  Analyze sound files
   2.  Execute data visualization processes
   3.  GUI
+  4.  [...]
     *  TODO: Specify libraries when finalized.
 
 2.  Development
   1.  Utilize chosen libraries to implement functionality
+  2.  [...]
     *  TODO: Document processes and developmental stages of project.
 
 3.  Testing
