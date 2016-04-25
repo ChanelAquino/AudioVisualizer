@@ -2,7 +2,7 @@
 
 ##TEAM MEMBERS 
 	1. Chanel Aquino (github.com/ChanelAquino)
-	2. Matt Wall (github.com/CSUMBMWall)
+	2. Matt Wall (github.com/CSUMBmWall)
 	3. Samba Diallo (github.com/SambaDialloB)
 
 ##OBJECTIVE 
@@ -10,19 +10,23 @@ Our group intends to utilize Python libraries to build a program that takes in a
 
 ##PHASES
 1.  Research Python Libraries
-  1.  Analyze sound files
-  2.  Execute data visualization processes
-  3.  GUI
-  4.  [...]
-    *  TODO: Specify libraries when finalized.
+  1.  scipy: to read in sound files
+  2.  numpy: to manipulate/analyze sound data
+  3.  matplotlib: to execute data visualization processes
+  4.  ???: to implement GUI
+  5.  [...]
 
 2.  Development
-  1.  Utilize chosen libraries to implement functionality
-  2.  [...]
-    *  TODO: Document processes and developmental stages of project.
+  1.  Read in sound file.
+    * Hard-code versus user-defined
+  2.  Analyze various data from sound file.
+    * Fast Fourier Transform (FFT)
+    * [...]
+  3.  Visualize the data.
+    * matplotlib
 
 3.  Testing
-  1.  Experiment with different audio files (i.e., user-defined sound file versus hard-coded sound file)
-  2.  Experiment with different data visualization options
-  3.  Test different user inputs
+  1.  Experiment with different audio files (i.e., hard-coded sound file versus user-defined sound file)
+  2.  Experiment with different data visualization options (e.g., matplotlib, Bokeh)
+  3.  Test different user inputs (e.g., choose from different visualization effects)
 
