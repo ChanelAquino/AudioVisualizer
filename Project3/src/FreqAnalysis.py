@@ -3,7 +3,7 @@ from scipy.io.wavfile import read
 import matplotlib.pyplot as plt
 
 # read audio samples
-input_data = read("C:\cst205\Project3\\bugs_left_turn.wav")
+input_data = read("C:\\Users\Samba\Desktop\CST205-Project-3\bugs_left_turn.wav")
 audio = input_data[1]
 
 # plot the first 1024 samples

@@ -63,7 +63,7 @@ T = duration/44100.0
 freq = k/T	# two sides frequency
 #freq = freq[range(duration/2)]	# one side frequency
 Y = fft(audio)/duration	# fft computing and normalizing
-Y = Y[range(duration/2)]
+Y = Y[range(duration//2)]
 
 # plot figure 4
 plt.subplot(numRows, numCols, 4)
