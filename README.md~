@@ -18,12 +18,9 @@ Our group intends to utilize Python libraries to build a program that takes in a
 
 2.  Development
   1.  Read in sound file.
-    * Hard-code versus user-defined
   2.  Analyze various data from sound file.
-    * Fast Fourier Transform (FFT)
-    * [...]
   3.  Visualize the data.
-    * matplotlib
+    *  TODO: Document processes and developmental stages of project.
 
 3.  Testing
   1.  Experiment with different audio files (i.e., hard-coded sound file versus user-defined sound file)
