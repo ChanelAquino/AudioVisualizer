@@ -1,4 +1,5 @@
 from bokeh.plotting import figure, output_file, show
+from bokeh.charts import Scatter, output_file, show
 from scipy.io.wavfile import read
 
 # prepare some data

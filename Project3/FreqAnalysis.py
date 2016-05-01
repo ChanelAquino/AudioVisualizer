@@ -4,6 +4,8 @@ from scipy.fftpack import rfft, fft
 import matplotlib.pyplot as plt
 import scipy
 import numpy as np
+from bokeh import mpl
+from bokeh.plotting import output_file, show
 
 
 #-------------------------------------------#
@@ -74,7 +76,9 @@ plt.plot(abs(Y), 'm')
 
 
 # display the plot
-plt.show()
+output_file("mpl_subplot.html", title="mpl_subplot.py example")
+show(mpl.to_bokeh())
+#plt.show()
 '''
 # label the axes
 plt.ylabel("Amplitude")
