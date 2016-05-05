@@ -14,7 +14,7 @@ Our group intends to utilize Python libraries to build a program that takes in a
   2.  numpy: to manipulate/analyze sound data
   3.  matplotlib: to execute data visualization processes
   4.  Tkinter: to implement GUI
-  5.  [...]
+    * Other libraries used are in libraries.py
 
 2.  Development
   1.  Read in sound file.
@@ -34,3 +34,4 @@ Our group intends to utilize Python libraries to build a program that takes in a
   4.  Improve GUI using proper design schematics (font, color schemes, layout, etc.)
   5.  Implement more functionality (i.e., different ways to analyze sound)
 
+##DEMONSTRATION
