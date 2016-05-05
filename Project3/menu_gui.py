@@ -2,7 +2,7 @@ import Tkinter as tk
 from Tkinter import *
 import tkFont
 
-from test_analysis import *
+from sound_analysis import *
 
 #----------------------------------------#
 #----------FONT CUSTOM INFO--------------#
@@ -14,10 +14,6 @@ BUTTON_TEXT_COLOR = "#9D958D"
 BUTTON_ACTIVE = "#D4D2CF"
 
 song_file = ""
-DEFAULT_SONG = "bugs_left_turn.wav"
-SONG_1 = "hands_down.wav"
-SONG_2 = "return_of_the_mack.wav"
-SONG_3 = "going_to_california.wav"
 
 
 #################################################
@@ -47,15 +43,18 @@ class AudioViz(tk.Tk):
 			frame.configure(bg=BG_COLOR) 
 
 		# first visible frame
-		self.show_page("SongSelection")
+		self.show_song_menu()
 
 	# display SongSelection frame
-	def show_page(self, page_name):
-		frame = self.frames[page_name]
+	def show_song_menu(self):
+		frame = self.frames["SongSelection"]
 		frame.tkraise()
 
-	#def display_audio_visualizer(self, song):
-	#	plotOriginalAudio(song)
+	# display VisualSelection frame
+	def show_visual_menu(self, song):
+		song_file = song
+		frame = self.frames["VisualSelection"]
+		frame.tkraise()
 #################################################
 
 
@@ -72,12 +71,12 @@ class SongSelection(tk.Frame):
 		title.pack(side="top", fill="x", pady=10)
 
 		# song1 button
-		song1 = tk.Button(self, text="HANDS DOWN", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="10", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_page("VisualSelection"))
+		song1 = tk.Button(self, text="HANDS DOWN", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="10", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_visual_menu("hands_down.wav"))
 		# song2 button
-		song2 = tk.Button(self, text="RETURN OF THE MACK", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="10", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_page("VisualSelection"))
+		song2 = tk.Button(self, text="RETURN OF THE MACK", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="10", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_visual_menu("return_of_the_mack.wav"))
 
 		# song3 button
-		song3 = tk.Button(self, text="GOING TO CALIFORNIA", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="10", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_page("VisualSelection"))
+		song3 = tk.Button(self, text="GOING TO CALIFORNIA", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="10", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_visual_menu("going_to_california.wav"))
 
 		# display buttons
 		song1.pack()
@@ -99,19 +98,19 @@ class VisualSelection(tk.Frame):
 		title.pack(side="top", fill="x", pady=10)
 
 		# original audio
-		orig_audio = tk.Button(self, text="ORIGINAL AUDIO", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotOriginalAudio("bugs_left_turn.wav"))
+		orig_audio = tk.Button(self, text="ORIGINAL AUDIO", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotOriginalAudio(str(song_file)))
 
 		# audio with hanning window
-		audio_hann = tk.Button(self, text="AUDIO WITH HANNING WINDOW", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotAudioHanningWindow("bugs_left_turn.wav"))
+		audio_hann = tk.Button(self, text="AUDIO WITH HANNING WINDOW", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotAudioHanningWindow(str(song_file)))
 
 		# audio normalized with fft
-		audio_fft = tk.Button(self, text="AUDIO NORMALIZED WITH FFT", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotAudioNormalizedFFT("bugs_left_turn.wav"))
+		audio_fft = tk.Button(self, text="AUDIO NORMALIZED WITH FFT", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotAudioNormalizedFFT(str(song_file)))
 
 		# audio magnitude values
-		audio_mag = tk.Button(self, text="AUDIO MAGNITUDE VALUES", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotAudioMagnitudeValues("bugs_left_turn.wav"))
+		audio_mag = tk.Button(self, text="AUDIO MAGNITUDE VALUES", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="8", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: plotAudioMagnitudeValues(str(song_file)))
 
 		# button to allow user to select a different song
-		change_song = tk.Button(self, text="Select a different song.", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="4", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_page("SongSelection"))
+		change_song = tk.Button(self, text="Select a different song.", fg=BUTTON_TEXT_COLOR, bg=BUTTON_COLOR, width="45", height="4", highlightbackground=BUTTON_COLOR, activebackground=BUTTON_ACTIVE, command=lambda: controller.show_song_menu())
 
 		orig_audio.pack()
 		audio_hann.pack()
