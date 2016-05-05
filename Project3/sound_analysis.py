@@ -20,8 +20,6 @@ def plotSignalWave(song_file, style):
 	# plot Time versus signal
 	plt.title("Signal Wave")
 	plt.plot(Time, signal, style)
-	plt.xlabel("Time")
-	plt.ylabel("Signal")
 	plt.show()
 	return ''
 #################################################
@@ -49,7 +47,6 @@ def plotAudioHanningWindow(song_file, style):
 
 	# plot audioHann
 	plt.title("Audio with Hanning Window")
-	#plt.xlim([0, 1024]) # x-axis range
 	plt.plot(signal, style)
 	plt.show()
 	return ''
@@ -60,7 +57,6 @@ def plotAudioNormalizedFFT(song_file, style):
 	# read in sound file; get first 1024 samples
 	input_data = read(song_file)
 	audio = input_data[1]
-	#audio = audio[0:1024]
 
 	duration = len(audio)
 	audioFFT = fft(audio)/duration	# fft computing and normalizing
@@ -68,8 +64,6 @@ def plotAudioNormalizedFFT(song_file, style):
 
 	# plot audioFFT
 	plt.title("Audio Normalized with FFT")
-	#plt.xlim([0, 500]) # x-axis range
-	#plt.ylim([0,5])	# y-axis range
 	plt.plot(abs(audioFFT), style)
 	plt.show()
 	return ''

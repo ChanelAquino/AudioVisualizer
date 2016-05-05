@@ -199,7 +199,7 @@ class StyleSelect(tk.Frame):
 		title.pack()
 
 		# solid line
-		solid_line = tk.Button(self, text="--------------------", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('-'))
+		solid_line = tk.Button(self, text="---------------", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('--'))
 		solid_line.config(font=BUTTON_FONT)
 
 		# circle
