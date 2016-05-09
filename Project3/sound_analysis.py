@@ -1,5 +1,7 @@
 from libraries import *
 
+#NOTE: plotting methods don't seem to work with longer .wav files
+#TODO: fix matrices issues...?
 
 #################################################
 def plotSignalWave(song_file, style):
@@ -29,15 +31,17 @@ def plotAudioHanningWindow(song_file, style):
 	# read in sound file; get first 1024 samples
 	input_data = read(song_file)
 	audio = input_data[1]
+	audio = audio[0:1024]
 
 	# compute a 1024-point Hanning window;
 	# apply window to audio
 	window = hann(1024)
-	audio = audio[0:1024] * window
+	print(window, " IS WINDOW")
+	audioHann = audio * window
 
 	# plot audioHann
 	plt.title("Audio with Hanning Window")
-	plt.plot(audio, style)
+	plt.plot(audioHann, style)
 	plt.show()
 	return ''
 

@@ -139,10 +139,16 @@ class SongSelect(tk.Frame):
 		song3 = tk.Button(self, text="Going to California", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("going_to_california.wav"))
 		song3.config(font=BUTTON_FONT)
 
+		# song4 button
+		song4 = tk.Button(self, text="Bugs Bunny", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("bugs_left_turn.wav"))
+		song4.config(font=BUTTON_FONT)
+
+
 		# display buttons
 		song1.pack()
 		song2.pack()
 		song3.pack()
+		song4.pack()
 #################################################
 
 
