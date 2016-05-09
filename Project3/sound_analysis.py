@@ -1,6 +1,6 @@
 from libraries import *
 
-#TODO: fix everything but plotSignalWave
+
 #################################################
 def plotSignalWave(song_file, style):
 	# open .wav file
@@ -27,29 +27,20 @@ def plotSignalWave(song_file, style):
 #################################################
 def plotAudioHanningWindow(song_file, style):
 	# read in sound file; get first 1024 samples
-	#input_data = read(song_file)
-	#audio = input_data[1]
-
-	# open .wav file
-	sound_wave = wave.open(song_file, 'r')
-	
-	# extract raw audio from .wav file
-	signal = sound_wave.readframes(-1)
-	signal = np.fromstring(signal, 'Int16')
-
-	# frame rate of .wav file
-	frame_rate = sound_wave.getframerate()
+	input_data = read(song_file)
+	audio = input_data[1]
 
 	# compute a 1024-point Hanning window;
 	# apply window to audio
-	window = hann(frame_rate)
-	signal = signal * window
+	window = hann(1024)
+	audio = audio[0:1024] * window
 
 	# plot audioHann
 	plt.title("Audio with Hanning Window")
-	plt.plot(signal, style)
+	plt.plot(audio, style)
 	plt.show()
 	return ''
+
 #################################################
 
 #################################################
@@ -74,7 +65,11 @@ def plotAudioMagnitudeValues(song_file, style):
 	# read in sound file; get first 1024 samples
 	input_data = read(song_file)
 	audio = input_data[1]
-	audio = audio[0:1024]
+
+	# compute a 1024-point Hanning window;
+	# apply window to audio
+	window = hann(1024)
+	audio = audio[0:1024] * window
 
 	# compute and normalize magnitude values
 	magnitudeValues = abs(rfft(audio))	# fft
