@@ -13,15 +13,16 @@ Our group intends to utilize Python libraries to build a program that takes in a
   1.  scipy: to read in sound files
   2.  numpy: to manipulate/analyze sound data
   3.  matplotlib: to execute data visualization processes
-  4.  ???: to implement GUI
-  5.  [...]
+  4.  Tkinter: to implement GUI
 
 2.  Development
   1.  Read in sound file.
     * Hard-code versus user-defined
   2.  Analyze various data from sound file.
+    * Signal Wave
+    * Audio with Hanning Window
+    * Magnintude Values
     * Fast Fourier Transform (FFT)
-    * [...]
   3.  Visualize the data.
     * matplotlib
 
@@ -29,4 +30,9 @@ Our group intends to utilize Python libraries to build a program that takes in a
   1.  Experiment with different audio files (i.e., hard-coded sound file versus user-defined sound file)
   2.  Experiment with different data visualization options (e.g., matplotlib, Bokeh)
   3.  Test different user inputs (e.g., choose from different visualization effects)
+
+##DEMONSTRATION
+![ScreenShot](http://i63.tinypic.com/ml0zsm.png)
+![ScreenShot](http://i65.tinypic.com/200480j.png)
+
 
