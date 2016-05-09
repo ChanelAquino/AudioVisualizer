@@ -1,7 +1,7 @@
 import Tkinter as tk
 from Tkinter import *
 from Tkinter import Canvas
-import tkFont
+#import tkFont
 
 from sound_analysis import *
 
@@ -77,7 +77,7 @@ class AudioViz(tk.Tk):
 	def show_style_menu(self, color):
 		global style_string
 		style_string += color
-		print(style_string, " is style_string")
+
 		frame = self.frames["StyleSelect"]
 		frame.tkraise()
 
@@ -85,7 +85,7 @@ class AudioViz(tk.Tk):
 	def show_visual_menu(self, shape):
 		global style_string
 		style_string += shape
-		print(style_string, " is style_string")
+
 		frame = self.frames["VisualSelect"]
 		frame.tkraise()
 
@@ -103,12 +103,12 @@ class WelcomeScreen(tk.Frame):
 		self.controller = controller
 		
 		# title aesthetics
-		title = tk.Label(self, text="audio\nvisualizer", bg=BG_COLOR, width="45", fg="#fff")
+		title = tk.Label(self, text="Audio\nVisualizer", bg=BG_COLOR, width="45", fg="#fff")
 		title.config(font=TITLE_FONT)
 		title.pack()
 
 		# enter button
-		enter = tk.Button(self, text="enter", padx="20", pady="5", highlightthickness="0", highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_song_menu())
+		enter = tk.Button(self, text="ENTER", padx="20", pady="5", highlightthickness="0", highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_song_menu())
 		enter.config(font=BUTTON_FONT)
 		enter.place(relx=0.5, rely=0.625, anchor=CENTER)
 		
@@ -123,20 +123,20 @@ class SongSelect(tk.Frame):
 		self.controller = controller
 
 		# title aesthetics
-		title = tk.Label(self, text="song?", bg=BG_COLOR, width="45", fg="#fff")
+		title = tk.Label(self, text="Song?", bg=BG_COLOR, width="45", fg="#fff")
 		title.config(font=TITLE_FONT)
 		title.pack()
 
 		# song1 button
-		song1 = tk.Button(self, text="hands down", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("hands_down.wav"))
+		song1 = tk.Button(self, text="Hands Down", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("hands_down.wav"))
 		song1.config(font=BUTTON_FONT)
 
 		# song2 button
-		song2 = tk.Button(self, text="return of the mack", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("return_of_the_mack.wav"))
+		song2 = tk.Button(self, text="Return of the Mack", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("return_of_the_mack.wav"))
 		song2.config(font=BUTTON_FONT)
 
 		# song3 button
-		song3 = tk.Button(self, text="going to california", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("going_to_california.wav"))
+		song3 = tk.Button(self, text="Going to California", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("going_to_california.wav"))
 		song3.config(font=BUTTON_FONT)
 
 		# display buttons
@@ -154,28 +154,28 @@ class ColorSelect(tk.Frame):
 		self.controller = controller
 		
 		# title aesthetics
-		title = tk.Label(self, text="color?", bg=BG_COLOR, width="45", fg="#fff")
+		title = tk.Label(self, text="Color?", bg=BG_COLOR, width="45", fg="#fff")
 		title.config(font=TITLE_FONT)
 		title.pack()
 
 		# cyan
-		cyan = tk.Button(self, text="cyan", width="15", fg="#00ffff", highlightthickness="0", command=lambda: controller.show_style_menu('c'))
+		cyan = tk.Button(self, text="Cyan", width="15", fg="#00ffff", highlightthickness="0", command=lambda: controller.show_style_menu('c'))
 		cyan.config(font=BUTTON_FONT)
 
 		# magenta
-		magenta = tk.Button(self, text="magenta", width="15", fg="#ff00ff", highlightthickness="0", command=lambda: controller.show_style_menu('m'))
+		magenta = tk.Button(self, text="Magenta", width="15", fg="#ff00ff", highlightthickness="0", command=lambda: controller.show_style_menu('m'))
 		magenta.config(font=BUTTON_FONT)
 
 		# green
-		green = tk.Button(self, text="green", width="15", fg="#00FF00", highlightthickness="0", command=lambda: controller.show_style_menu('g'))
+		green = tk.Button(self, text="Green", width="15", fg="#00FF00", highlightthickness="0", command=lambda: controller.show_style_menu('g'))
 		green.config(font=BUTTON_FONT)
 
 		# black
-		black = tk.Button(self, text="black", width="15", highlightthickness="0", command=lambda: controller.show_style_menu('k'))
+		black = tk.Button(self, text="Black", width="15", highlightthickness="0", command=lambda: controller.show_style_menu('k'))
 		black.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="start over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
 		start_over.config(font=SMALL_FONT)
 
 		cyan.pack()
@@ -194,12 +194,12 @@ class StyleSelect(tk.Frame):
 		self.controller = controller
 		
 		# title aesthetics
-		title = tk.Label(self, text="style?", bg=BG_COLOR, width="45", fg="#fff")
+		title = tk.Label(self, text="Style?", bg=BG_COLOR, width="45", fg="#fff")
 		title.config(font=TITLE_FONT)
 		title.pack()
 
 		# solid line
-		solid_line = tk.Button(self, text="---------------", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('--'))
+		solid_line = tk.Button(self, text="-----------------", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('--'))
 		solid_line.config(font=BUTTON_FONT)
 
 		# circle
@@ -216,7 +216,7 @@ class StyleSelect(tk.Frame):
 		pixel.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="start over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
 		start_over.config(font=SMALL_FONT)
 
 		solid_line.pack()
@@ -237,34 +237,34 @@ class VisualSelect(tk.Frame):
 		global song_file
 
 		# title aesthetics
-		title = tk.Label(self, text="visualizer?", bg=BG_COLOR, width="45", fg="#fff")
+		title = tk.Label(self, text="Visualizer?", bg=BG_COLOR, width="45", fg="#fff")
 		title.config(font=TITLE_FONT)
 		title.pack()
 
 		# original audio
-		orig_audio = tk.Button(self, text="signal wave", width="15", highlightthickness="0", command=lambda: plotSignalWave(song_file, style_string))
+		orig_audio = tk.Button(self, text="Signal Wave", width="20", highlightthickness="0", command=lambda: plotSignalWave(song_file, style_string))
 		orig_audio.config(font=BUTTON_FONT)
 
 		# audio with hanning window
-		audio_hann = tk.Button(self, text="hann window", width="15", highlightthickness="0", command=lambda: plotAudioHanningWindow(song_file, style_string))
+		audio_hann = tk.Button(self, text="Hanning Window", width="20", highlightthickness="0", command=lambda: plotAudioHanningWindow(song_file, style_string))
 		audio_hann.config(font=BUTTON_FONT)
 
 		# audio normalized with fft
-		audio_fft = tk.Button(self, text="fft", width="15", highlightthickness="0", command=lambda: plotAudioNormalizedFFT(song_file, style_string))
+		audio_fft = tk.Button(self, text="Fast Fourier Transform", width="20", highlightthickness="0", command=lambda: plotAudioNormalizedFFT(song_file, style_string))
 		audio_fft.config(font=BUTTON_FONT)
 
 		# audio magnitude values
-		audio_mag = tk.Button(self, text="mag", width="15", highlightthickness="0", command=lambda: plotAudioMagnitudeValues(song_file, style_string))
+		audio_mag = tk.Button(self, text="Magnitude Values", width="20", highlightthickness="0", command=lambda: plotAudioMagnitudeValues(song_file, style_string))
 		audio_mag.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="start over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
 		start_over.config(font=SMALL_FONT)
 
 		orig_audio.pack()
 		audio_hann.pack()
-		audio_mag.pack()
 		audio_fft.pack()
+		audio_mag.pack()
 		start_over.pack()
 #################################################
 
