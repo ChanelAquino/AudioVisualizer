@@ -11,11 +11,9 @@ from sound_analysis import *
 TITLE_FONT = ("AppleGothic", 85, "bold")
 BUTTON_FONT = ("AppleGothic", 35)
 SMALL_FONT = ("AppleGothic", 20)
-
 BUTTON_COLOR = "#FF5722" # accent color: orange
 BG_COLOR = "#607D8B" # primary color: light blue gray
 TEXT_COLOR = "#212121" # primary text: matte black
-
 
 song_file = "" 
 style_string = ""
@@ -56,6 +54,7 @@ class AudioViz(tk.Tk):
 
 		global style_string
 		style_string = ""
+		
 		frame = self.frames["WelcomeScreen"]
 		frame.tkraise()
 
@@ -68,7 +67,6 @@ class AudioViz(tk.Tk):
 	def show_color_menu(self, song):
 		global song_file 
 		song_file = song
-		print (song_file, " is song_file")
 
 		frame = self.frames["ColorSelect"]
 		frame.tkraise()
@@ -87,11 +85,7 @@ class AudioViz(tk.Tk):
 		style_string += shape
 
 		frame = self.frames["VisualSelect"]
-		frame.tkraise()
-
-	
-
-	
+		frame.tkraise()	
 #################################################
 
 
@@ -181,7 +175,7 @@ class ColorSelect(tk.Frame):
 		black.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_welcome())
 		start_over.config(font=SMALL_FONT)
 
 		cyan.pack()
@@ -222,7 +216,7 @@ class StyleSelect(tk.Frame):
 		pixel.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_welcome())
 		start_over.config(font=SMALL_FONT)
 
 		solid_line.pack()
@@ -264,7 +258,7 @@ class VisualSelect(tk.Frame):
 		audio_mag.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_song_menu())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_welcome())
 		start_over.config(font=SMALL_FONT)
 
 		orig_audio.pack()
