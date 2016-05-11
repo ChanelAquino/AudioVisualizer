@@ -1,5 +1,7 @@
 from libraries import *
 
+
+
 #################################################
 def plotSignalWave(song_file, style):
 	# open .wav file
@@ -16,10 +18,13 @@ def plotSignalWave(song_file, style):
 	# the size of the audio file
 	Time = np.linspace(0, len(signal)/frame_rate, num = len(signal))
 
-	# plot Time versus signal
-	plt.title("Signal Wave")
-	plt.plot(Time, signal, style)
-	plt.show()
+	if song_file is "hands_down.wav":
+		# plot using Bokeh
+	else:	# plot using matplotlib
+		# plot Time versus signal
+		plt.title("Signal Wave")
+		plt.plot(Time, signal, style)
+		plt.show()
 	return ''
 #################################################
 
@@ -35,10 +40,13 @@ def plotAudioHanningWindow(song_file, style):
 	window = hann(1024)
 	audioHann = audio * window
 
-	# plot audioHann
-	plt.title("Audio with Hanning Window")
-	plt.plot(audioHann, style)
-	plt.show()
+	if song_file is "hands_down.wav": 
+		# plot using Bokeh
+	else: # plot using matplotlib
+		# plot audioHann
+		plt.title("Audio with Hanning Window")
+		plt.plot(audioHann, style)
+		plt.show()
 	return ''
 
 #################################################
@@ -53,10 +61,13 @@ def plotAudioNormalizedFFT(song_file, style):
 	audioFFT = fft(audio)/duration	# fft computing and normalizing
 	audioFFT = audioFFT[range(duration/2)]
 
-	# plot audioFFT
-	plt.title("Audio Normalized with FFT")
-	plt.plot(abs(audioFFT), style)
-	plt.show()
+	if song_file is "hands_down.wav": 
+		# plot using Bokeh
+	else: # plot using matplotlib
+		# plot audioFFT
+		plt.title("Audio Normalized with FFT")
+		plt.plot(abs(audioFFT), style)
+		plt.show()
 	return ''
 #################################################
 
@@ -76,11 +87,14 @@ def plotAudioMagnitudeValues(song_file, style):
 	magnitudeValues = 20 * scipy.log10(magnitudeValues)	# convert to a decibel scale
 	magnitudeValues -= max(magnitudeValues)	# normalize to have a maximum value of 0 dB 
 
-	# plot magnitudeValues
-	plt.title("Audio Magnitude Values")
-	plt.xlim([0, 1024]) # x-axis range
-	plt.plot(magnitudeValues, style)
-	plt.show()
+	if song_file is "hands_down.wav": 
+		# plot using Bokeh
+	else: # plot using matplotlib
+		# plot magnitudeValues
+		plt.title("Audio Magnitude Values")
+		plt.xlim([0, 1024]) # x-axis range
+		plt.plot(magnitudeValues, style)
+		plt.show()
 	return ''
 #################################################
 
