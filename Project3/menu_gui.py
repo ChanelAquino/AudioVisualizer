@@ -1,7 +1,6 @@
 import Tkinter as tk
 from Tkinter import *
 from Tkinter import Canvas
-#import tkFont
 
 from sound_analysis import *
 
@@ -192,37 +191,37 @@ class StyleSelect(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		self.controller = controller
-		
+
 		# title aesthetics
 		title = tk.Label(self, text="Style?", bg=BG_COLOR, width="45", fg="#fff")
 		title.config(font=TITLE_FONT)
 		title.pack()
 
 		# solid line
-		solid_line = tk.Button(self, text="-----------------", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('--'))
+		solid_line = tk.Button(self, text="Solid Line", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('--'))
 		solid_line.config(font=BUTTON_FONT)
 
-		# circle
-		circle = tk.Button(self, text="ooooooooooooooo", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('o'))
-		circle.config(font=BUTTON_FONT)
-
 		# star
-		star = tk.Button(self, text="********************", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('*'))
+		star = tk.Button(self, text="Star", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('*'))
 		star.config(font=BUTTON_FONT)
 
+		# circle
+		circle = tk.Button(self, text="Circle", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('o'))
+		circle.config(font=BUTTON_FONT)
 
-		# pixel
-		pixel = tk.Button(self, text=".........................", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu(','))
-		pixel.config(font=BUTTON_FONT)
+
+		# triangle
+		triangle = tk.Button(self, text="Triangle", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('v'))
+		triangle.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
 		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_welcome())
 		start_over.config(font=SMALL_FONT)
 
 		solid_line.pack()
-		circle.pack()
 		star.pack()
-		pixel.pack()
+		circle.pack()
+		triangle.pack()
 		start_over.pack()
 #################################################
 
