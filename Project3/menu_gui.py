@@ -10,9 +10,9 @@ from sound_analysis import *
 TITLE_FONT = ("AppleGothic", 85, "bold")
 BUTTON_FONT = ("AppleGothic", 35)
 SMALL_FONT = ("AppleGothic", 20)
-BUTTON_COLOR = "#FF5722" # accent color: orange
-BG_COLOR = "#607D8B" # primary color: light blue gray
-TEXT_COLOR = "#212121" # primary text: matte black
+BUTTON_COLOR = "#607D8B" # accent color: gray blue
+BG_COLOR = "#212121" # primary color: matte black
+TEXT_COLOR = "#F5F5F5" # primary text: beige gray
 
 song_file = "" 
 style_string = ""
@@ -101,7 +101,7 @@ class WelcomeScreen(tk.Frame):
 		title.pack()
 
 		# enter button
-		enter = tk.Button(self, text="ENTER", padx="20", pady="5", highlightthickness="0", highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_song_menu())
+		enter = tk.Button(self, text="ENTER", padx="20", pady="5", highlightthickness="0", fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_song_menu())
 		enter.config(font=BUTTON_FONT)
 		enter.place(relx=0.5, rely=0.625, anchor=CENTER)
 		
@@ -121,27 +121,31 @@ class SongSelect(tk.Frame):
 		title.pack()
 
 		# song1 button
-		song1 = tk.Button(self, text="Hands Down", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("hands_down.wav"))
+		song1 = tk.Button(self, text="Hands Down", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_color_menu("hands_down.wav"))
 		song1.config(font=BUTTON_FONT)
 
 		# song2 button
-		song2 = tk.Button(self, text="Return of the Mack", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("return_of_the_mack.wav"))
+		song2 = tk.Button(self, text="Return of the Mack", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_color_menu("return_of_the_mack.wav"))
 		song2.config(font=BUTTON_FONT)
 
 		# song3 button
-		song3 = tk.Button(self, text="Going to California", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("going_to_california.wav"))
+		song3 = tk.Button(self, text="Going to California", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_color_menu("going_to_california.wav"))
 		song3.config(font=BUTTON_FONT)
 
 		# song4 button
-		song4 = tk.Button(self, text="Bugs Bunny", width="15", highlightthickness="0", command=lambda: controller.show_color_menu("bugs_left_turn.wav"))
+		song4 = tk.Button(self, text="Bugs Bunny", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_color_menu("bugs_left_turn.wav"))
 		song4.config(font=BUTTON_FONT)
 
+		# button to allow user to start over
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0",  fg=BUTTON_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_welcome())
+		start_over.config(font=SMALL_FONT)
 
 		# display buttons
 		song1.pack()
 		song2.pack()
 		song3.pack()
 		song4.pack()
+		start_over.pack()
 #################################################
 
 
@@ -158,23 +162,23 @@ class ColorSelect(tk.Frame):
 		title.pack()
 
 		# cyan
-		cyan = tk.Button(self, text="Cyan", width="15", fg="#00ffff", highlightthickness="0", command=lambda: controller.show_style_menu('c'))
+		cyan = tk.Button(self, text="Cyan", width="15",  highlightthickness="0",  fg="#00ffff", background=BG_COLOR,highlightbackground="#00ffff", highlightcolor=BG_COLOR, command=lambda: controller.show_style_menu('c'))
 		cyan.config(font=BUTTON_FONT)
 
 		# magenta
-		magenta = tk.Button(self, text="Magenta", width="15", fg="#ff00ff", highlightthickness="0", command=lambda: controller.show_style_menu('m'))
+		magenta = tk.Button(self, text="Magenta", width="15",  highlightthickness="0",  fg="#ff00ff", background=BG_COLOR, activebackground=BG_COLOR, highlightbackground="#ff00ff", highlightcolor=BG_COLOR, command=lambda: controller.show_style_menu('m'))
 		magenta.config(font=BUTTON_FONT)
 
 		# green
-		green = tk.Button(self, text="Green", width="15", fg="#00FF00", highlightthickness="0", command=lambda: controller.show_style_menu('g'))
+		green = tk.Button(self, text="Green", width="15",  highlightthickness="0",  fg="#009900", background=BG_COLOR, activebackground=BG_COLOR, highlightbackground="#009900", highlightcolor=BUTTON_COLOR, command=lambda: controller.show_style_menu('g'))
 		green.config(font=BUTTON_FONT)
 
 		# black
-		black = tk.Button(self, text="Black", width="15", highlightthickness="0", command=lambda: controller.show_style_menu('k'))
+		black = tk.Button(self, text="Black", width="15", highlightthickness="0",  fg="#000000", background=BG_COLOR, activebackground=BG_COLOR, highlightbackground="#000000", highlightcolor=BUTTON_COLOR, command=lambda: controller.show_style_menu('k'))
 		black.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_welcome())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", fg=BUTTON_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_welcome())
 		start_over.config(font=SMALL_FONT)
 
 		cyan.pack()
@@ -198,24 +202,24 @@ class StyleSelect(tk.Frame):
 		title.pack()
 
 		# solid line
-		solid_line = tk.Button(self, text="Solid Line", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('--'))
+		solid_line = tk.Button(self, text="Solid Line", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('--'))
 		solid_line.config(font=BUTTON_FONT)
 
 		# star
-		star = tk.Button(self, text="Star", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('*'))
+		star = tk.Button(self, text="Star", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('*'))
 		star.config(font=BUTTON_FONT)
 
 		# circle
-		circle = tk.Button(self, text="Circle", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('o'))
+		circle = tk.Button(self, text="Circle", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('o'))
 		circle.config(font=BUTTON_FONT)
 
 
 		# triangle
-		triangle = tk.Button(self, text="Triangle", width="15", highlightthickness="0", command=lambda: controller.show_visual_menu('v'))
+		triangle = tk.Button(self, text="Triangle", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('v'))
 		triangle.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_welcome())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0",  fg=BUTTON_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_welcome())
 		start_over.config(font=SMALL_FONT)
 
 		solid_line.pack()
@@ -241,23 +245,23 @@ class VisualSelect(tk.Frame):
 		title.pack()
 
 		# original audio
-		orig_audio = tk.Button(self, text="Signal Wave", width="20", highlightthickness="0", command=lambda: plotSignalWave(song_file, style_string))
+		orig_audio = tk.Button(self, text="Signal Wave", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotSignalWave(song_file, style_string))
 		orig_audio.config(font=BUTTON_FONT)
 
 		# audio with hanning window
-		audio_hann = tk.Button(self, text="Hanning Window", width="20", highlightthickness="0", command=lambda: plotAudioHanningWindow(song_file, style_string))
+		audio_hann = tk.Button(self, text="Hanning Window", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotAudioHanningWindow(song_file, style_string))
 		audio_hann.config(font=BUTTON_FONT)
 
 		# audio normalized with fft
-		audio_fft = tk.Button(self, text="Fast Fourier Transform", width="20", highlightthickness="0", command=lambda: plotAudioNormalizedFFT(song_file, style_string))
+		audio_fft = tk.Button(self, text="Fast Fourier Transform", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotAudioNormalizedFFT(song_file, style_string))
 		audio_fft.config(font=BUTTON_FONT)
 
 		# audio magnitude values
-		audio_mag = tk.Button(self, text="Magnitude Values", width="20", highlightthickness="0", command=lambda: plotAudioMagnitudeValues(song_file, style_string))
+		audio_mag = tk.Button(self, text="Magnitude Values", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotAudioMagnitudeValues(song_file, style_string))
 		audio_mag.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
-		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0", command=lambda: controller.show_welcome())
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0",  fg=BUTTON_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_welcome())
 		start_over.config(font=SMALL_FONT)
 
 		orig_audio.pack()
@@ -276,7 +280,6 @@ if __name__ == "__main__":
 	app.title("Audio Visualizer")
 	app.mainloop()
 #################################################
-
 
 
 
