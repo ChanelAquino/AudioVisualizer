@@ -19,7 +19,7 @@ def plotSignalWave(song_file, style):
 	Time = np.linspace(0, len(signal)/frame_rate, num = len(signal))
 
 	if song_file is "hands_down.wav":
-		# plot using Bokeh
+		print("USE BOKEH")
 	else:	# plot using matplotlib
 		# plot Time versus signal
 		plt.title("Signal Wave")
@@ -41,7 +41,7 @@ def plotAudioHanningWindow(song_file, style):
 	audioHann = audio * window
 
 	if song_file is "hands_down.wav": 
-		# plot using Bokeh
+		print("USE BOKEH")
 	else: # plot using matplotlib
 		# plot audioHann
 		plt.title("Audio with Hanning Window")
@@ -62,7 +62,7 @@ def plotAudioNormalizedFFT(song_file, style):
 	audioFFT = audioFFT[range(duration/2)]
 
 	if song_file is "hands_down.wav": 
-		# plot using Bokeh
+		print("USE BOKEH")
 	else: # plot using matplotlib
 		# plot audioFFT
 		plt.title("Audio Normalized with FFT")
@@ -88,7 +88,7 @@ def plotAudioMagnitudeValues(song_file, style):
 	magnitudeValues -= max(magnitudeValues)	# normalize to have a maximum value of 0 dB 
 
 	if song_file is "hands_down.wav": 
-		# plot using Bokeh
+		print("USE BOKEH")
 	else: # plot using matplotlib
 		# plot magnitudeValues
 		plt.title("Audio Magnitude Values")
@@ -97,7 +97,6 @@ def plotAudioMagnitudeValues(song_file, style):
 		plt.show()
 	return ''
 #################################################
-
 
 
 
