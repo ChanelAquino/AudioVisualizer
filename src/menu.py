@@ -2,7 +2,11 @@ import Tkinter as tk
 from Tkinter import *
 from Tkinter import Canvas
 
-from sound_analysis import *
+from sound_analysis_bokeh import *
+import sound_analysis_bokeh as bkPlot
+
+from sound_analysis_matplotlib import *
+import sound_analysis_matplotlib as mpPlot
 
 #----------------------------------------#
 #----------FONT CUSTOM INFO--------------#
@@ -14,8 +18,12 @@ BUTTON_COLOR = "#607D8B" # accent color: gray blue
 BG_COLOR = "#212121" # primary color: matte black
 TEXT_COLOR = "#F5F5F5" # primary text: beige gray
 
+#--------------------------#
+#------GLOBAL STRINGS------#
+#--------------------------#
 song_file = "" 
 style_string = ""
+plot_style = ""
 
 #################################################
 class AudioViz(tk.Tk):
@@ -32,7 +40,7 @@ class AudioViz(tk.Tk):
 		# initialize empty list to hold all frames
 		self.frames = {}
 
-		for F in (WelcomeScreen, SongSelect, ColorSelect, StyleSelect, VisualSelect):
+		for F in (WelcomeScreen, SongSelect, ColorSelect, StyleSelect, PlotSelect, VisualSelectBokeh, VisualSelectMPL):
 			page_name = F.__name__
 			frame = F(container, self)
 
@@ -78,13 +86,26 @@ class AudioViz(tk.Tk):
 		frame = self.frames["StyleSelect"]
 		frame.tkraise()
 
-	# display VisualSelection frame
-	def show_visual_menu(self, shape):
+	# display PlotSelect frame
+	def show_plot_frame(self, shape):
 		global style_string
 		style_string += shape
 
-		frame = self.frames["VisualSelect"]
+		frame = self.frames["PlotSelect"]
+		frame.tkraise()
+
+	# display VisualSelectionBokeh frame
+	def show_visualBokeh_menu(self):
+		frame = self.frames["VisualSelectBokeh"]
 		frame.tkraise()	
+
+	# display VisualSelectionMPL frame
+	def show_visualMPL_menu(self):
+		frame = self.frames["VisualSelectMPL"]
+		frame.tkraise()	
+
+
+	
 #################################################
 
 
@@ -202,20 +223,20 @@ class StyleSelect(tk.Frame):
 		title.pack()
 
 		# solid line
-		solid_line = tk.Button(self, text="Solid Line", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('--'))
+		solid_line = tk.Button(self, text="Solid Line", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_plot_frame('--'))
 		solid_line.config(font=BUTTON_FONT)
 
 		# star
-		star = tk.Button(self, text="Star", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('*'))
+		star = tk.Button(self, text="Star", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_plot_frame('*'))
 		star.config(font=BUTTON_FONT)
 
 		# circle
-		circle = tk.Button(self, text="Circle", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('o'))
+		circle = tk.Button(self, text="Circle", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_plot_frame('o'))
 		circle.config(font=BUTTON_FONT)
 
 
 		# triangle
-		triangle = tk.Button(self, text="Triangle", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visual_menu('v'))
+		triangle = tk.Button(self, text="Triangle", width="15", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_plot_frame('v'))
 		triangle.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
@@ -231,8 +252,39 @@ class StyleSelect(tk.Frame):
 
 
 #################################################
-# menu to select audio visualizer method
-class VisualSelect(tk.Frame):
+# menu to select Bokeh or matplotlib
+class PlotSelect(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		self.controller = controller
+
+		
+		# title aesthetics
+		title = tk.Label(self, text="Plot Method?", bg=BG_COLOR, width="45", fg="#fff")
+		title.config(font=TITLE_FONT)
+		title.pack()
+
+		# plot_bokeh
+		plot_bokeh = tk.Button(self, text="Bokeh", width="10", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visualBokeh_menu())
+		plot_bokeh.config(font=BUTTON_FONT)
+
+		# plot_matplotlib
+		plot_matplotlib = tk.Button(self, text="matplotlib", width="10", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_visualMPL_menu())
+		plot_matplotlib.config(font=BUTTON_FONT)
+
+		# button to allow user to start over
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0",  fg=BUTTON_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_welcome())
+		start_over.config(font=SMALL_FONT)
+
+		plot_bokeh.pack()
+		plot_matplotlib.pack()
+		start_over.pack()
+#################################################
+
+
+#################################################
+# menu to select audio visualizer method w/ Bokeh
+class VisualSelectBokeh(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self, parent)
 		self.controller = controller
@@ -245,19 +297,59 @@ class VisualSelect(tk.Frame):
 		title.pack()
 
 		# original audio
-		orig_audio = tk.Button(self, text="Signal Wave", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotSignalWave(song_file, style_string))
+		orig_audio = tk.Button(self, text="Signal Wave", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: bkPlot.plotSignalWave(song_file, style_string))
 		orig_audio.config(font=BUTTON_FONT)
 
 		# audio with hanning window
-		audio_hann = tk.Button(self, text="Hanning Window", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotAudioHanningWindow(song_file, style_string))
+		audio_hann = tk.Button(self, text="Hanning Window", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: bkPlot.plotAudioHanningWindow(song_file, style_string))
 		audio_hann.config(font=BUTTON_FONT)
 
 		# audio normalized with fft
-		audio_fft = tk.Button(self, text="Fast Fourier Transform", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotAudioNormalizedFFT(song_file, style_string))
+		audio_fft = tk.Button(self, text="Fast Fourier Transform", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: bkPlot.plotAudioNormalizedFFT(song_file, style_string))
 		audio_fft.config(font=BUTTON_FONT)
 
 		# audio magnitude values
-		audio_mag = tk.Button(self, text="Magnitude Values", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: plotAudioMagnitudeValues(song_file, style_string))
+		audio_mag = tk.Button(self, text="Magnitude Values", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: bkPlot.plotAudioMagnitudeValues(song_file, style_string))
+		audio_mag.config(font=BUTTON_FONT)
+
+		# button to allow user to start over
+		start_over = tk.Button(self, text="Start Over", width="15", highlightthickness="0",  fg=BUTTON_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: controller.show_welcome())
+		start_over.config(font=SMALL_FONT)
+
+		orig_audio.pack()
+		audio_hann.pack()
+		audio_fft.pack()
+		audio_mag.pack()
+		start_over.pack()
+#################################################
+
+
+#################################################
+# menu to select audio visualizer method with matplotlib
+class VisualSelectMPL(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self, parent)
+		self.controller = controller
+
+		# title aesthetics
+		title = tk.Label(self, text="Visualizer?", bg=BG_COLOR, width="45", fg="#fff")
+		title.config(font=TITLE_FONT)
+		title.pack()
+
+		# original audio
+		orig_audio = tk.Button(self, text="Signal Wave", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: mpPlot.plotSignalWave(song_file, style_string))
+		orig_audio.config(font=BUTTON_FONT)
+
+		# audio with hanning window
+		audio_hann = tk.Button(self, text="Hanning Window", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: mpPlot.plotAudioHanningWindow(song_file, style_string))
+		audio_hann.config(font=BUTTON_FONT)
+
+		# audio normalized with fft
+		audio_fft = tk.Button(self, text="Fast Fourier Transform", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: mpPlot.plotAudioNormalizedFFT(song_file, style_string))
+		audio_fft.config(font=BUTTON_FONT)
+
+		# audio magnitude values
+		audio_mag = tk.Button(self, text="Magnitude Values", width="20", highlightthickness="0",  fg=BG_COLOR, activeforeground=BUTTON_COLOR, background=BG_COLOR, activebackground=BG_COLOR, highlightbackground=BUTTON_COLOR, highlightcolor=BUTTON_COLOR, command=lambda: mpPlot.plotAudioMagnitudeValues(song_file, style_string))
 		audio_mag.config(font=BUTTON_FONT)
 
 		# button to allow user to start over
